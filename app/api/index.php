@@ -74,7 +74,7 @@ function getUser($request, $response, $args){
     $json = $request->getParsedBody();
     $jwt = $json['token'];
     $decoded = JWT::decode($jwt, $key, array('HS256'));
-    var_dump($decoded);
+        return $response->withJson(array('hellow'=>1));
 }
 
 
