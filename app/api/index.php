@@ -73,10 +73,14 @@ function addUser($request,$response,$args){
 function getUser($request,$response,$args){
     $json = $request->getParsedBody();
     $jwt = $json['token'];
-    $decoded = JWT::decode($jwt, $key, array('HS256'));
-    var_dump($decoded);
+    try{
+        $decoded = JWT::decode($jwt, $key, array('HS256'));
+        return $response->withJson($decoded,200);
+    }
+    catch(Exception $u){
+        echo '{"error":{"text":'. $u->getMessage() .'}}';
+    }
 }
-
 
 
 ?>
