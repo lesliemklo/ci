@@ -22,7 +22,7 @@ $app->run();
 function login($request,$response,$args){
     $json = $request->getParsedBody();
 
-    $email = sanitize($json['email']);
+    $email = sanitize(strtolower($json['email']));
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) return $response->withJson(array('authenticated'=>0),401,0);
     $password = sanitize($json['password']);
 
@@ -55,7 +55,7 @@ function addUser($request,$response,$args){
     $json = $request->getParsedBody();
     $firstName = sanitize($json['firstName']);
     $lastName = sanitize($json['lastName']);
-    $email = sanitize($json['email']);
+    $email = sanitize(strtolower($json['email']));
     $password = sanitize($json['password']);
     $hash = password_hash($password, PASSWORD_DEFAULT);
 	try{
