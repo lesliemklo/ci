@@ -41,10 +41,10 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookies,
 
     function init() {
         if ($cookies.token) {
-            token = $cookieStore.token;
+            token = $cookies.token;
         }
         if ($cookies.email) {
-            email = $cookieStore.email;
+            email = $cookies.email;
         }
 
     }
@@ -65,8 +65,8 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookies,
     }
 
     function logout(){
-        $cookieStore.token = undefined;
-        $cookieStore.email = undefined;
+        $cookies.token = undefined;
+        $cookies.email = undefined;
         init();
     }
 });
