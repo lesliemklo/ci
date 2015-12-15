@@ -70,8 +70,8 @@ function addUser($request,$response,$args){
 
 function dbConnect(){
 	$dbhost="localhost";
-	$dbuser="root";
-	$dbpass="root";
+	$dbuser="adminGXQfEiX";
+	$dbpass="XiL4TKYrjmHl";
 	$dbname="ci";
 
 	$mysql_conn_string = "mysql:host=$dbhost;dbname=$dbname";
