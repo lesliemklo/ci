@@ -52,7 +52,7 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookies,
     init()
 
     function isAuthenticated(){
-        if(token) return true;
+        if(typeof token !== "undefined") return true;
         return false;
     }
 
