@@ -71,7 +71,10 @@ function addUser($request,$response,$args){
 }
 
 function getUser($request,$response,$args){
-        return $response->withJson(array('hellow'=>1));
+    $json = $request->getParsedBody();
+    $jwt = $json['token'];
+    $decoded = JWT::decode($jwt, $key, array('HS256'));
+    var_dump($decoded);
 }
 
 
