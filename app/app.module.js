@@ -40,10 +40,10 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookies,
     }
 
     function init() {
-        if ($cookies.token) {
+        if (typeof $cookies.token !== "undefined") {
             token = $cookies.token;
         }
-        if ($cookies.email) {
+        if (typeof $cookies.email !== "undefined") {
             email = $cookies.email;
         }
 

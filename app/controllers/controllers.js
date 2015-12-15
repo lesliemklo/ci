@@ -55,7 +55,7 @@ ciApp.controller("dashboardController",function($scope,authenticationService,$lo
     $scope.email = authenticationService.getEmail();
     userService.getUser($cookies.token)
         .then(function(result){
-            $scope.user = result;
+            $scope.user = result.data;
         });
 
     $scope.logout = function(){
