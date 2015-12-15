@@ -66,7 +66,9 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookies,
 
     function logout(){
         $cookies.token = undefined;
+        delete $cookies['token'];
         $cookies.email = undefined;
+        delete $cookies['email'];
         init();
     }
 });
