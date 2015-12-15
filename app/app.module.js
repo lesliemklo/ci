@@ -2,7 +2,7 @@ var ciApp = angular.module('ciApp', [
     'ngRoute','ngMessages','ngCookies'
 ]);
 
-ciApp.factory("authenticationService",function($http,$location,$window,$cookieStore,$q){
+ciApp.factory("authenticationService",function($http,$location,$window,$cookies,$q){
     var service = {};
 
     service.login = login;
@@ -30,8 +30,8 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookieSt
             .then(function(response) {
                 token = response.data.token;
                 email = response.data.email;
-                $cookieStore.put("token", token);
-                $cookieStore.put("email", email);
+                $cookies.token = token;
+                $cookies.email = email;
                 deferred.resolve(response)
             },function(error) {
                 deferred.reject(error);
@@ -40,11 +40,11 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookieSt
     }
 
     function init() {
-        if ($cookieStore.get("token")) {
-            token = $cookieStore.get("token");
+        if ($cookies.token) {
+            token = $cookieStore.token;
         }
-        if ($cookieStore.get("email")) {
-            email = $cookieStore.get("email");
+        if ($cookies.email) {
+            email = $cookieStore.email;
         }
 
     }
@@ -65,8 +65,8 @@ ciApp.factory("authenticationService",function($http,$location,$window,$cookieSt
     }
 
     function logout(){
-        $cookieStore.remove("token");
-        $cookieStore.remove("email")
+        $cookieStore.token = undefined;
+        $cookieStore.email = undefined;
         init();
     }
 });

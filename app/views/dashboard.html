@@ -1,12 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="col-md-3" ng-controller="dashboardController">
-            <div class="row">You're logged in as {{ user }}</div>
+            <div class="row">Welcome, {{ user.firstName }} {{ user.lastName }}</div>
+            <br/> Your current email address: {{user.email}}
             <br/>
             <br/>
             <br/>
-
-
             <div class="row"> <button type="button" class="btn btn-info btn-md" ng-click="logout()">Logout</button></div>
         </div>
     </div>
