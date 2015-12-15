@@ -3,6 +3,7 @@
 
 <div class="col-lg-6 well well-sm" ng-controller="registerController">
 
+    <div class="alert alert-danger" role="alert" ng-show="emailTaken">The email has already been taken</div>
     <div class="alert alert-success" role="alert" ng-show="userCreated">Your account is successfully created!</div>
 
     <form name="reg" role="form" ng-submit="register(reg)" required ng-show="!userCreated">

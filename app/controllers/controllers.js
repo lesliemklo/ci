@@ -129,11 +129,15 @@ ciApp.controller("registerController",function($scope,registrationService,$locat
 
     $scope.register = function(form){
 
+        $scope.emailTaken = false;
+
         registrationService.register(form)
             .then(function(result){
                 $scope.userCreated = true;
             },function(error){
                 $scope.userCreated = false;
+                $scope.emailTaken = true;
+                $scope.email = '';
             })
     }
 
