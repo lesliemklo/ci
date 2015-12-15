@@ -119,7 +119,7 @@ ciApp.factory("userService",function($http,$q){
             'token': token
         };
 
-        $http.post('api/index.php',obj)
+        $http.post('api/index.php/user',obj)
             .then(function(response){
                 deferred.resolve(response)
             },function(error){
