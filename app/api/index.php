@@ -12,6 +12,8 @@ $app->get('/',function($request,$response,$args){
 });
 $app->post('/','addUser');
 
+$app->post('/user','getUser');
+
 $app->post('/login','login');
 
 
@@ -38,7 +40,6 @@ function login($request,$response,$args){
             $lastName = $user->lastName;
             $userId = $user->userId;
             $token = array('id'=>$userId,'firstName'=>$firstName,'lastName'=>$lastName,'email'=>$email);
-            $key = "xCrNT2xD4hD746qMCO3iyE8ml8MK205I";
             $jwt = JWT::encode($token, $key);
             return $response->withJson(array('authenticated'=>1,'','email'=>$email,'token'=>$jwt));
         }
@@ -67,6 +68,13 @@ function addUser($request,$response,$args){
         return $response->withJson(array('registered'=>0),401,0);
      }
 
+}
+
+function getUser($request, $response, $args{
+    $json = $request->getParsedBody();
+    $jwt = $json['token'];
+    $decoded = JWT::decode($jwt, $key, array('HS256'));
+    var_dump($decoded);
 }
 
 
