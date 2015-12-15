@@ -1,6 +1,6 @@
 <?php
 function dbConnect(){
-	$dbhost="localhost";
+	$dbhost="127.3.119.130:3306";
 	$dbuser="adminGXQfEiX";
 	$dbpass="XiL4TKYrjmHl";
 	$dbname="ci";
