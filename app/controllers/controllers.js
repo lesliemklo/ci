@@ -1,4 +1,4 @@
-ciApp.controller("loginController",function($scope,authenticationService,$location,$window){
+ciApp.controller("loginController",function($scope,authenticationService,$location){
 
     $scope.login = function(form){
         $scope.invalidCred = false;
@@ -22,7 +22,7 @@ ciApp.controller("loginController",function($scope,authenticationService,$locati
 
 });
 
-ciApp.controller("registerController",function($scope,registrationService,$location,$q){
+ciApp.controller("registerController",function($scope,registrationService,$location){
 
     $scope.register = function(form){
 
@@ -48,12 +48,12 @@ ciApp.controller("registerController",function($scope,registrationService,$locat
 
 
 
-ciApp.controller("dashboardController",function($scope,authenticationService,$location,$cookieStore,userService){
+ciApp.controller("dashboardController",function($scope,authenticationService,$location,userService){
 
     authenticationService.init()
 
     $scope.email = authenticationService.getEmail();
-    $scope.user = userService.getUser($cookieStore.get('token'));
+    $scope.user = userService.getUser($cookies.token);
 
     $scope.logout = function(){
         authenticationService.logout();
