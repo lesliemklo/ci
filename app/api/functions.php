@@ -1,6 +1,5 @@
 <?php
 
-$key = "xCrNT2xD4hD746qMCO3iyE8ml8MK205I";
 
 function dbConnect(){
 	$dbhost="127.3.119.130:3306";
