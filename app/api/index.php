@@ -19,8 +19,10 @@ $app->run();
 
 function login($request,$response,$args){
     $json = $request->getParsedBody();
-    $email = $json['email'];
-    $password = $json['password'];
+
+    $email = sanitize($json['email']);
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) return $response->withJson(array('authenticated'=>0),401,0);
+    $password = sanitize($json['password']);
 
     try{
         $db = dbConnect();
@@ -43,16 +45,16 @@ function login($request,$response,$args){
         return $response->withJson(array('authenticated'=>0),401,0);
     }
     catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
+        return $response->withJson(array('authenticated'=>0),401,0);
     }
 }
 
 function addUser($request,$response,$args){
     $json = $request->getParsedBody();
-    $firstName = $json['firstName'];
-    $lastName = $json['lastName'];
-    $email = $json['email'];
-    $password = $json['password'];
+    $firstName = sanitize($json['firstName']);
+    $lastName = sanitize($json['lastName']);
+    $email = sanitize($json['email']);
+    $password = sanitize($json['password']);
     $hash = password_hash($password, PASSWORD_DEFAULT);
 	try{
 	    $db = dbConnect();
@@ -62,7 +64,7 @@ function addUser($request,$response,$args){
         return $response->withJson(array('registered'=>1));
 
     } catch(PDOException $e) {
-        return $response->withJson(array('registered'=>0));
+        return $response->withJson(array('registered'=>0),401,0);
      }
 
 }
