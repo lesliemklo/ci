@@ -116,7 +116,7 @@ ciApp.factory("userService",function($http,$q){
         var deferred = $q.defer();
 
         var obj = {
-            'token': token,
+            'token': token
         };
 
         $http.post('api/index.php',obj)

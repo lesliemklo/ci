@@ -48,7 +48,7 @@ ciApp.controller("registerController",function($scope,registrationService,$locat
 
 
 
-ciApp.controller("dashboardController",function($scope,authenticationService,$location,$cookieStore){
+ciApp.controller("dashboardController",function($scope,authenticationService,$location,$cookieStore,userService){
 
     authenticationService.init()
 
